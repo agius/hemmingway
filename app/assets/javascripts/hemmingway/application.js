@@ -10,4 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap
+//= require codemirror
+//= require codemirror/modes/slim
+//= require codemirror/modes/markdown
+//= require codemirror/modes/haml
+//= require codemirror/modes/htmlmixed
+//= require codemirror/modes/xml
+//= require summernote
 //= require_tree .

@@ -8,6 +8,10 @@ module Hemmingway
       g.assets false
       g.helper false
     end
+
+    initializer 'hemmingway.assets.precompile' do |app|
+      app.config.assets.precompile += %w(application.css application.js)
+    end
   
   end
 end

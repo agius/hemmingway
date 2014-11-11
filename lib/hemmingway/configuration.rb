@@ -21,7 +21,7 @@ module Hemmingway
     end
 
     def set_default_configuration
-      self.layout = 'application'
+      self.layout = 'hemmingway/application'
       self.home_page = nil
       self.admin_check = Proc.new { true }
     end
