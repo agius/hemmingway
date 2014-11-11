@@ -3,7 +3,7 @@ require_dependency "hemmingway/application_controller"
 module Hemmingway
   class PagesController < ApplicationController
 
-    layout Hemmingway.layout
+    layout Proc.new { Hemmingway.layout }
     before_action :admin_check, except: [:show]
     before_action :set_page, only: [:show, :edit, :update, :destroy]
 
@@ -53,8 +53,8 @@ module Hemmingway
 
     private
       def admin_check
-        p Hemmingway.admin_check
-        render 401 unless Hemmingway.admin_check
+        return true unless Hemmingway.admin_check
+        raise ActionController::BadRequest unless instance_exec &Hemmingway.admin_check
       end
 
       # Use callbacks to share common setup or constraints between actions.

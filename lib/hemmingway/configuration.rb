@@ -11,6 +11,11 @@ module Hemmingway
       yield self
     end
 
+    def admin_check=(check)
+      raise ArgumentError.new("admin_check must be a Proc") unless check.is_a?(Proc)
+      @admin_check = check
+    end
+
     def self.extended(base)
       base.set_default_configuration
     end
@@ -18,7 +23,7 @@ module Hemmingway
     def set_default_configuration
       self.layout = 'application'
       self.home_page = nil
-      self.admin_check = ->{ true }
+      self.admin_check = Proc.new { true }
     end
   end
 end
