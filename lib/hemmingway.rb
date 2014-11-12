@@ -1,8 +1,5 @@
 require 'jquery-rails'
-require 'bootstrap-sass'
-require 'font-awesome-sass'
-require 'summernote/rails'
-require 'codemirror-rails'
+require 'medium-editor-rails'
 
 require 'hemmingway/engine'
 require 'hemmingway/configuration'

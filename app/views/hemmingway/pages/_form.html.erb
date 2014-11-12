@@ -34,7 +34,9 @@
     <div class="col-md-12">
       <div class="form-group">
         <%= f.label :html %><br>
-        <%= f.text_area :html, size: '5x10', class: 'summernote', data: { summernote: 'true' } %>
+        <div class="editable" data-form-name="html">
+          <%= @page.html.html_safe %>
+        </div>
       </div>
     </div>
   </div>

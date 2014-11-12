@@ -12,12 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
-//= require codemirror
-//= require codemirror/modes/slim
-//= require codemirror/modes/markdown
-//= require codemirror/modes/haml
-//= require codemirror/modes/htmlmixed
-//= require codemirror/modes/xml
-//= require summernote
+//= require medium-editor
 //= require_tree .
