@@ -9,6 +9,20 @@
 </head>
 <body id="hemmingway">
 
+<% if flash[:notice] %>
+  <div class="alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-error alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
 <div class="container">
   <div class="col-md-12">
     <%= yield %>

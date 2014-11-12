@@ -1,1 +1,13 @@
-<%= @page.html.html_safe %>
+<div id="hemmingway">
+  <% if @is_admin %>
+    <div data-air-mode="true" data-form-target="#edit_page_<%= @page.id %>">
+      <%= @page.html.html_safe %>
+    </div>
+    <%= form_for @page do |f| %>
+      <%= f.text_area :html, style: 'display: none' %>
+      <%= f.submit 'Save', class: 'btn btn-success' %>
+    <% end %>
+  <% else %>
+    <%= @page.html.html_safe %>
+  <% end %>
+</div>

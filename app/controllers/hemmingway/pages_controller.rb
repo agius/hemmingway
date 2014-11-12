@@ -3,7 +3,8 @@ require_dependency "hemmingway/application_controller"
 module Hemmingway
   class PagesController < ApplicationController
 
-    layout Proc.new { Hemmingway.layout }
+    layout :get_layout
+    before_action :set_is_admin
     before_action :admin_check, except: [:show]
     before_action :set_page, only: [:show, :edit, :update, :destroy]
 
@@ -52,14 +53,21 @@ module Hemmingway
     end
 
     private
-      def admin_check
-        return true unless Hemmingway.admin_check
-        raise ActionController::BadRequest unless instance_exec &Hemmingway.admin_check
+
+      def get_layout
+        Hemmingway.layout
       end
 
-      # Use callbacks to share common setup or constraints between actions.
+      def set_is_admin
+        @is_admin ||= instance_exec(&Hemmingway.admin_check)
+      end
+
       def set_page
         @page = Page.find_by_url!(params[:id])
+      end
+      
+      def admin_check
+        raise ActionController::BadRequest unless @is_admin
       end
 
       # Only allow a trusted parameter "white list" through.

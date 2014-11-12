@@ -1,4 +1,2 @@
-module Hemmingway
-  class ApplicationController < ActionController::Base
-  end
+class Hemmingway::ApplicationController < ApplicationController
 end
