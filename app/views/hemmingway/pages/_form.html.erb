@@ -1,31 +1,49 @@
-<%= form_for(@page) do |f| %>
-  <% if @page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+<% 
+  page = local_assigns[:page] || @page
+  url = page.url_changed? ? page.url_was : page.url
+  path = page.new_record? ? hemmingway_pages_path : parent_page_path(url)
+  method = page.new_record? ? 'post' : 'patch'
+%>
 
-      <ul>
-      <% @page.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for(page, url: path, html: {method: method}) do |f| %>
+  <% if page.errors[:base].any? %>
+    <div id="error_explanation" class="panel panel-danger">
+      <div class="panel-heading">
+        <%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:
+      </div>
+
+      <div class="panel-body">
+        <ul>
+        <% page.errors.full_messages_for(:base).each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
 
   <div class="row">
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="form-group <%= page.errors[:url].any? ? 'has-error' : '' %>">
         <%= f.label :url %><br>
 
         <div class="input-group">
-          <div class="input-group-addon"><%= request.protocol %><%= request.host %>/</div>
+          <div class="input-group-addon"><%= @prefix %></div>
           <%= f.text_field :url, class: 'form-control' %>
         </div>
+        <% if page.errors[:url].any? %>
+          <p class="help-block text-danger"><%= page.errors.full_messages_for(:url).join(', ') %></p>
+        <% end %>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="form-group">
+      <div class="form-group <%= page.errors[:locale].any? ? 'has-error' : '' %>">
         <%= f.label :locale %><br>
         <%= f.text_field :locale, class: 'form-control' %>
+
+        <% if page.errors[:locale].any? %>
+            <p class="help-block"><%= page.errors.full_messages_for(:locale).join(', ') %></p>
+          <% end %>
       </div>
     </div>
   </div>

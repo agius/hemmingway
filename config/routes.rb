@@ -1,7 +1,16 @@
-Hemmingway::Engine.routes.draw do
-  root 'pages#index'
-  get '/:id' => 'pages#show'
+Hemmingway.parent_engine.routes.draw do
 
-  resources :pages
+  namespace :hemmingway do
+    resources :pages
+  end
+
+  if Hemmingway.home_page?
+    get "/#{Hemmingway.home_page}", to: redirect('/')
+    root to: 'hemmingway/pages#show', id: Hemmingway.home_page
+  end
+
+  if Hemmingway.routes?
+    get Hemmingway::RouteMatcher.match_routes
+  end
 
 end

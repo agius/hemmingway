@@ -1,11 +1,17 @@
 module Hemmingway
   module Configuration
 
-    attr_accessor(
+    OPTIONS = [
       :home_page,
       :layout,
-      :admin_check
-    )
+      :admin_check,
+      :parent_engine,
+      :routes,
+      :original_route_set,
+      :cache
+    ]
+
+    attr_accessor *OPTIONS
 
     def configure
       yield self
@@ -24,6 +30,14 @@ module Hemmingway
       self.layout = 'hemmingway/application'
       self.home_page = nil
       self.admin_check = Proc.new { true }
+      self.routes = :page
+      self.cache = false
+    end
+
+    OPTIONS.each do |option|
+      define_method "#{option}?" do
+        self.send(option).present?
+      end
     end
   end
 end

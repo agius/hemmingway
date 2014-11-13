@@ -12,6 +12,10 @@ module Hemmingway
     initializer 'hemmingway.assets.precompile' do |app|
       app.config.assets.precompile += %w(application.css application.js)
     end
+
+    initializer "Set up default parent engine" do |app|
+      Hemmingway.parent_engine ||= Rails.application
+    end
   
   end
 end

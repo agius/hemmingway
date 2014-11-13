@@ -5,8 +5,11 @@ require 'font-awesome-sass'
 require 'summernote/rails'
 require 'codemirror-rails'
 
-require 'hemmingway/engine'
 require 'hemmingway/configuration'
+require 'hemmingway/constraint'
+require 'hemmingway/route_matcher'
+require 'hemmingway/route_helpers'
+require 'hemmingway/engine'
 
 module Hemmingway
   extend Configuration

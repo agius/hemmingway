@@ -4,7 +4,7 @@ module Hemmingway
   class PagesController < ApplicationController
 
     layout :get_layout
-    before_action :set_is_admin
+    before_action :setup
     before_action :admin_check, except: [:show]
     before_action :set_page, only: [:show, :edit, :update, :destroy]
 
@@ -31,7 +31,7 @@ module Hemmingway
       @page = Page.new(page_params)
 
       if @page.save
-        redirect_to @page, notice: 'Page was successfully created.'
+        redirect_to parent_page_path(@page.to_param), notice: 'Page was successfully created.'
       else
         render :new
       end
@@ -40,7 +40,7 @@ module Hemmingway
     # PATCH/PUT /pages/1
     def update
       if @page.update(page_params)
-        redirect_to @page, notice: 'Page was successfully updated.'
+        redirect_to parent_page_path(@page.to_param), notice: 'Page was successfully updated.'
       else
         render :edit
       end
@@ -49,7 +49,7 @@ module Hemmingway
     # DELETE /pages/1
     def destroy
       @page.destroy
-      redirect_to pages_url, notice: 'Page was successfully destroyed.'
+      redirect_to hemmingway_pages_path, notice: 'Page was successfully destroyed.'
     end
 
     private
@@ -58,8 +58,9 @@ module Hemmingway
         Hemmingway.layout
       end
 
-      def set_is_admin
+      def setup
         @is_admin ||= instance_exec(&Hemmingway.admin_check)
+        @prefix = "#{request.protocol}#{request.host}/"
       end
 
       def set_page

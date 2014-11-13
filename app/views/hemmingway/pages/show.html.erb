@@ -3,7 +3,7 @@
     <div data-air-mode="true" data-form-target="#edit_page_<%= @page.id %>">
       <%= @page.html.html_safe %>
     </div>
-    <%= form_for @page do |f| %>
+    <%= form_for @page, url: parent_page_path(@page.to_param), html: {method: 'patch'} do |f| %>
       <%= f.text_area :html, style: 'display: none' %>
       <%= f.submit 'Save', class: 'btn btn-success' %>
     <% end %>
