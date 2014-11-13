@@ -1,4 +1,5 @@
 require 'jquery-rails'
+require 'sass-rails'
 require 'bootstrap-sass'
 require 'font-awesome-sass'
 require 'summernote/rails'

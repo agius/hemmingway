@@ -1,5 +1,5 @@
-<div id="hemmingway">
-  <% if @is_admin %>
+<% if @is_admin %>
+  <div id="hemmingway">
     <div data-air-mode="true" data-form-target="#edit_page_<%= @page.id %>">
       <%= @page.html.html_safe %>
     </div>
@@ -7,7 +7,8 @@
       <%= f.text_area :html, style: 'display: none' %>
       <%= f.submit 'Save', class: 'btn btn-success' %>
     <% end %>
-  <% else %>
-    <%= @page.html.html_safe %>
-  <% end %>
-</div>
+  </div>
+<% else %>
+  <%= @page.html.html_safe %>
+<% end %>
+

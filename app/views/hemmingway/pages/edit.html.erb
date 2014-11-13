@@ -1,6 +1,10 @@
-<h1>Editing page</h1>
+<%= render layout: 'container' do %>
+  <h1>Editing page</h1>
 
-<%= render 'form' %>
+  <%= render 'form' %>
 
-<%= link_to 'Show', @page %> |
-<%= link_to 'Back', pages_path %>
+  <div class="pull-right">
+    <%= link_to 'Show', @page %>
+    <%= link_to 'Back', pages_path %>
+  </div>
+<% end %>
