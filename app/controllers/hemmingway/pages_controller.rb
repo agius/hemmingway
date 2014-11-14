@@ -52,6 +52,16 @@ module Hemmingway
       redirect_to hemmingway_pages_path, notice: 'Page was successfully destroyed.'
     end
 
+    # styles for editor
+    def styles
+      @styles = Hemmingway.styles.collect do |elem, classes|
+        desc = { element: elem.to_s }
+        desc[:attributes] =  { class: classes } if classes.present?
+        ["format_#{elem}", desc]
+      end
+      render json: Hash[@styles]
+    end
+
     private
 
       def get_layout

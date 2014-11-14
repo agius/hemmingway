@@ -3,6 +3,7 @@
   url = page.url_changed? ? page.url_was : page.url
   path = page.new_record? ? hemmingway_pages_path : parent_page_path(url)
   method = page.new_record? ? 'post' : 'patch'
+  page_html = page.html.present? ? page.html : (Hemmingway.template? ? render(partial: Hemmingway.template) : '')
 %>
 
 <%= form_for(page, url: path, html: {method: method}) do |f| %>
@@ -28,7 +29,7 @@
         <%= f.label :url %><br>
 
         <div class="input-group">
-          <div class="input-group-addon"><%= @prefix %></div>
+          <%= @prefix %>
           <%= f.text_field :url, class: 'form-control' %>
         </div>
         
@@ -56,16 +57,14 @@
     <div class="col-md-12">
       <div class="form-group">
         <%= f.label :html %><br>
-        <%= f.text_area :html, size: '5x10', class: 'summernote', data: { summernote: 'true' } %>
+        <%= f.text_area :html, size: '64x15', value: page_html, data: { hw_editor: 'full' } %>
       </div>
     </div>
   </div>
   
-  <div class="row">
+  <div class="row actions">
     <div class="col-md-12">
-      <div class="actions">
-        <%= f.submit "Save", class: 'btn btn-success' %>
-      </div>
+      <button type="submit" class="btn btn-success">Save</button>
     </div>
   </div>
 <% end %>

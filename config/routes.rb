@@ -1,7 +1,9 @@
 Hemmingway.parent_engine.routes.draw do
 
   namespace :hemmingway do
-    resources :pages
+    resources :pages do
+      get 'styles', on: :collection, formats: [:json]
+    end
   end
 
   if Hemmingway.home_page?

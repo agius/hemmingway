@@ -3,8 +3,9 @@
 
   <%= render 'form' %>
 
-  <div class="pull-right">
+  <div class="action-links">
     <%= link_to 'Show', parent_page_path(@page.to_param) %>
+    |
     <%= link_to 'Back', hemmingway_pages_path %>
   </div>
 <% end %>

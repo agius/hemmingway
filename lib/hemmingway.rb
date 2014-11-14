@@ -1,9 +1,6 @@
 require 'jquery-rails'
-require 'sass-rails'
-require 'bootstrap-sass'
-require 'font-awesome-sass'
-require 'summernote/rails'
-require 'codemirror-rails'
+require 'ckeditor_rails'
+require 'picnic-rails'
 
 require 'hemmingway/configuration'
 require 'hemmingway/constraint'

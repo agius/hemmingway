@@ -1,27 +1,16 @@
 <%= render layout: 'container' do %>
   <h1>Hemmingway: Your pages</h1>
 
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Url</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-
-    <tbody>
       <% @pages.each do |page| %>
-        <tr>
-          <td><h4><%= link_to "#{@prefix}#{page.url}", parent_page_path(page) %></h4></td>
-          <td>
-            <%= link_to 'Show', parent_page_path(page), class: 'btn btn-info' %>
-            <%= link_to 'Edit', edit_hemmingway_page_path(page), class: 'btn btn-info' %>
-            <%= link_to 'Destroy', parent_page_path(page), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
-          </td>
-        </tr>
+        <div class="row">
+          <div class="col-md-6"><h2><%= link_to "#{@prefix}#{page.url}", parent_page_path(page) %></h2></div>
+          <div class="col-md-6">
+            <%= link_to 'Show', parent_page_path(page), class: 'btn btn-info pull-right' %>
+            <%= link_to 'Edit', edit_hemmingway_page_path(page), class: 'btn btn-info pull-right' %>
+            <%= link_to 'Destroy', parent_page_path(page), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right' %>
+          </div>
+        </div>
       <% end %>
-    </tbody>
-  </table>
 
   <%= link_to 'New Page', new_hemmingway_page_path, class: 'btn btn-success' %>
 <% end %>

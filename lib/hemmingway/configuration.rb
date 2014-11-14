@@ -8,6 +8,8 @@ module Hemmingway
       :parent_engine,
       :routes,
       :original_route_set,
+      :styles,
+      :template,
       :cache
     ]
 
@@ -32,6 +34,16 @@ module Hemmingway
       self.admin_check = Proc.new { true }
       self.routes = :page
       self.cache = false
+      self.template = nil
+      self.styles = {
+        p: '',
+        h1: '',
+        h2: '',
+        h3: '',
+        h4: '',
+        h5: '',
+        h6: ''
+      } 
     end
 
     OPTIONS.each do |option|
