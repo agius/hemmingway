@@ -9,3 +9,4 @@ spec/dummy/.sass-cache
 test
 tmp
 .rspec
+todos.md

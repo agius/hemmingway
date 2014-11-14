@@ -31,6 +31,7 @@
           <div class="input-group-addon"><%= @prefix %></div>
           <%= f.text_field :url, class: 'form-control' %>
         </div>
+        
         <% if page.errors[:url].any? %>
           <p class="help-block text-danger"><%= page.errors.full_messages_for(:url).join(', ') %></p>
         <% end %>
@@ -39,11 +40,14 @@
     <div class="col-md-6">
       <div class="form-group <%= page.errors[:locale].any? ? 'has-error' : '' %>">
         <%= f.label :locale %><br>
-        <%= f.text_field :locale, class: 'form-control' %>
+        
+        <div class="input-group">
+          <%= f.select :locale, options_for_select(I18n.available_locales, page.locale), {}, class: 'form-control' %>
+        </div>
 
         <% if page.errors[:locale].any? %>
-            <p class="help-block"><%= page.errors.full_messages_for(:locale).join(', ') %></p>
-          <% end %>
+          <p class="help-block text-danger"><%= page.errors.full_messages_for(:locale).join(', ') %></p>
+        <% end %>
       </div>
     </div>
   </div>
