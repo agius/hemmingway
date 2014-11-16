@@ -31,7 +31,7 @@ module Hemmingway
       @page = Page.new(page_params)
 
       if @page.save
-        redirect_to hw_page_path(@page.to_param), notice: 'Page was successfully created.'
+        redirect_to parent_page_path(@page.to_param), notice: 'Page was successfully created.'
       else
         render :new
       end
@@ -40,7 +40,7 @@ module Hemmingway
     # PATCH/PUT /pages/1
     def update
       if @page.update(page_params)
-        redirect_to hw_page_path(@page.to_param), notice: 'Page was successfully updated.'
+        redirect_to parent_page_path(@page.to_param), notice: 'Page was successfully updated.'
       else
         render :edit
       end
@@ -49,7 +49,7 @@ module Hemmingway
     # DELETE /pages/1
     def destroy
       @page.destroy
-      redirect_to hemmingway_pages_path, notice: 'Page was successfully destroyed.'
+      redirect_to hw_pages_path
     end
 
     # styles for editor

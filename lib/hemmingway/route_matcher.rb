@@ -6,19 +6,13 @@ module Hemmingway
         {
           "/*id" => 'hemmingway/pages#show',
           as: :root_page,
-          constraint: Hemmingway::Constraint.new,
-          defaults: {
-            format: 'html'
-          }
+          constraint: Hemmingway::Constraint.new
         }
       else
         {
           "/#{Hemmingway.routes}/*id" => 'hemmingway/pages#show',
           as: Hemmingway.routes,
-          constraint: Hemmingway::Constraint.new,
-          defaults: {
-            format: 'html'
-          }
+          constraint: Hemmingway::Constraint.new
         }
       end
 

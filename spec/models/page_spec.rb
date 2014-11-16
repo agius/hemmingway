@@ -9,4 +9,13 @@ describe Hemmingway::Page do
     expect(page.html).to eq('<h1>hello there</h1>')
   end
 
+  it 'returns parameter correctly' do
+    expect(page.to_param).to eq('about-us')
+  end
+
+  it 'is not valid if route already exists' do
+    page.url = 'home'
+    expect(page).to_not be_valid
+  end
+
 end

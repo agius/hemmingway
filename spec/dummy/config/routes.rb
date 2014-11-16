@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount Hemmingway::Engine => "/hemmingway"
+  get 'home', to: 'home#index'
 end

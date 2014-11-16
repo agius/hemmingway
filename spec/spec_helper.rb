@@ -16,5 +16,12 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.order = "random"
 
+  config.after do
+    Hemmingway.set_default_configuration
+    Rails.application.reload_routes!
+  end
+
+  config.include Hemmingway::RouteHelpers, type: [:controller, :routing]
+
   config.include FactoryGirl::Syntax::Methods
 end

@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Hemmingway::PagesController do
-  routes { Hemmingway::Engine.routes }
 
   let!(:page) { create(:page) }
   let!(:other_page) { create(:page, url: 'faq') }
@@ -29,7 +28,14 @@ describe Hemmingway::PagesController do
   it 'creates a new page' do
     post :create, page: {url: 'tos', locale: 'en', html: '<h2>terms of service</h2>'}
     expect(assigns[:page]).to be_persisted
-    expect(response).to redirect_to page_path(assigns[:page].url)
+    expect(response).to redirect_to parent_page_path(assigns[:page].url)
+  end
+
+  it 'cannot create new page with existing route' do
+    post :create, page: {url: 'home', locale: 'en', html: '<p>this page should not work</p>'}
+    expect(assigns[:page]).to_not be_valid
+    expect(assigns[:page]).to_not be_persisted
+    expect(response).to render_template(:new)
   end
 
   it 'shows edit form' do
@@ -41,13 +47,13 @@ describe Hemmingway::PagesController do
   it 'updates existing page' do
     new_html = '<h2>DISCO</h2>'
     patch :update, id: page.url, page: {html: new_html}
-    expect(response).to redirect_to page_path(assigns[:page].url)
+    expect(response).to redirect_to parent_page_path(assigns[:page].url)
     expect(assigns[:page].html).to eq new_html
   end
 
   it 'deletes a record' do
     delete :destroy, id: page.url
-    expect(response).to redirect_to pages_path
+    expect(response).to redirect_to hw_pages_path
     expect(assigns[:page]).to be_destroyed
   end
 

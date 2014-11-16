@@ -1,7 +1,7 @@
 Hemmingway.parent_engine.routes.draw do
+  get 'hemmingway', to: 'hemmingway/pages#index'
 
   namespace :hemmingway do
-    root to: 'pages#index'
     resources :pages do
       get 'styles', on: :collection, formats: [:json]
     end
