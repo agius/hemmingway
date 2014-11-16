@@ -3,7 +3,10 @@ Hemmingway.parent_engine.routes.draw do
 
   namespace :hemmingway do
     resources :pages do
-      get 'styles', on: :collection, formats: [:json]
+      get   'styles', on: :collection, formats: [:json]
+      post  'preview', on: :collection
+      put   'preview', on: :collection
+      patch 'preview', on: :collection
     end
   end
 

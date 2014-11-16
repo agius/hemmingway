@@ -38,3 +38,10 @@ task :server do |t, args|
   args.shift
   Rails::CommandsTasks.new(args).run_command!('server')
 end
+
+namespace :dummy do
+  APP_PATH = File.join(File.dirname(__FILE__), 'spec/dummy/config/application')
+  require File.expand_path('spec/dummy/config/application')
+
+  Rails.application.load_tasks
+end

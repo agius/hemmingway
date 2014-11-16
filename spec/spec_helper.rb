@@ -21,7 +21,5 @@ RSpec.configure do |config|
     Rails.application.reload_routes!
   end
 
-  config.include Hemmingway::RouteHelpers, type: [:controller, :routing]
-
   config.include FactoryGirl::Syntax::Methods
 end

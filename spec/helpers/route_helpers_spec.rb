@@ -30,6 +30,14 @@ describe Hemmingway::RouteHelpers do
     match_path_and_url("/hemmingway/pages/#{page.url}/edit", :edit_hw_page, page)
   end
 
+  it 'has path to #styles' do
+    match_path_and_url('/hemmingway/pages/styles', :styles_hw_pages)
+  end
+
+  it 'has path to #preview' do
+    match_path_and_url('/hemmingway/pages/preview', :preview_hw_pages)
+  end
+
   context 'with root routes' do
     before do
       Hemmingway.routes = :root

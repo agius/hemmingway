@@ -57,18 +57,10 @@
     <div class="col-md-12">
       <div class="form-group">
         <%= f.label :html %><br>
-        <%= f.text_area :html, size: '64x15', value: page_html, data: { hw_editor: 'full' } %>
+        <%= f.text_area :html, size: '64x15', value: page_html, data: { hw_editor: 'full', hw_styles: styles_hw_pages_path(format: 'json') } %>
       </div>
     </div>
   </div>
   
-  <div class="row actions">
-    <div class="col-md-12">
-      <button type="submit" class="btn btn-success">Save</button>
-      <% unless page.new_record? %>
-        <%= link_to 'Show', hw_page_path(page), class: 'btn btn-info' %>
-      <% end %>
-      <%= link_to 'All Pages', hw_pages_path, class: 'btn btn-info' %>
-    </div>
-  </div>
+  <%= render partial: 'actions' %>
 <% end %>

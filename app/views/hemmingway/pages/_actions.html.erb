@@ -1,0 +1,16 @@
+<% page = local_assigns[:page] || @page %>
+<div class="row actions">
+  <div class="col-md-12">
+    <button type="submit" class="btn btn-success">Save</button>
+    <button type="button" 
+            class="btn btn-info"
+            data-hw-button="preview"
+            data-hw-preview-path="<%= preview_hw_pages_path %>">
+      Preview
+    </button>
+    <% unless page.new_record? %>
+      <%= link_to 'Show', hw_page_path(page), class: 'btn btn-info' %>
+    <% end %>
+    <%= link_to 'All Pages', hw_pages_path, class: 'btn btn-info' %>
+  </div>
+</div>

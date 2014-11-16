@@ -46,10 +46,14 @@ module Hemmingway
       end
     end
 
+    def preview
+      @page = Page.new(page_params)
+    end
+
     # DELETE /pages/1
     def destroy
       @page.destroy
-      redirect_to hw_pages_path
+      redirect_to hemmingway_pages_path
     end
 
     # styles for editor

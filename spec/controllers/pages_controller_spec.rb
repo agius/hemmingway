@@ -5,6 +5,8 @@ describe Hemmingway::PagesController do
   let!(:page) { create(:page) }
   let!(:other_page) { create(:page, url: 'faq') }
 
+  include Hemmingway::RouteHelpers
+
   render_views
 
   it 'shows index' do
@@ -36,6 +38,11 @@ describe Hemmingway::PagesController do
     expect(assigns[:page]).to_not be_valid
     expect(assigns[:page]).to_not be_persisted
     expect(response).to render_template(:new)
+  end
+
+  it 'shows a preview of a page being edited' do
+    post :preview, page: {url: page.url, locale: page.locale, html: '<p>this is some preview text</p>'}
+    expect(response).to render_template(:preview)
   end
 
   it 'shows edit form' do

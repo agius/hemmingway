@@ -1,8 +1,10 @@
 $(function(){
 
-  CKEDITOR.stylesSet.add('hemmingway:/hemmingway/pages/styles.json');
+  if(!$('[data-hw-editor]').length > 0){ return; }
 
-  $.get('/hemmingway/pages/styles.json', function(styles){
+  var styles_path = $('[data-hw-editor]').first().data('hw-styles');
+
+  $.get(styles_path, function(styles){
 
     var base_config = $.extend(styles, {
       extraAllowedContent: 'dl;dt;dd;*(*);*[id]',
@@ -13,7 +15,8 @@ $(function(){
         { name: 'basicstyles',  items: [ 'Bold', 'Italic', 'Underline', 'RemoveFormat' ] },
         { name: 'paragraph',    items: [ 'NumberedList','BulletedList','-','Outdent','Indent' ] },
         { name: 'links',        items: [ 'Link','Unlink','Anchor' ] },
-        { name: 'styles',       items: [ 'Format' ] }
+        { name: 'styles',       items: [ 'Format' ] },
+        { name: 'insert',       items: [ 'Image' ] }
       ]
     });
 
@@ -33,6 +36,20 @@ $(function(){
 
     });
 
+  });
+
+  $('[data-hw-button="preview"]').on('click', function(){
+    var elem = $(this),
+        form = elem.parents('form'),
+        original_path = elem.attr('action'),
+        original_target = elem.attr('target'),
+        path = elem.data('hw-preview-path');
+
+    form.attr('action', path);
+    form.attr('target', '_blank');
+    form.submit();
+    form.attr('action', original_path);
+    form.attr('target', original_target);
   });
   
 });

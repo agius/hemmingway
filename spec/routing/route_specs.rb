@@ -23,6 +23,18 @@ describe 'routes' do
     expect(post: '/hemmingway/pages', page: {html: 'none'}).to route_to(action: 'create', controller: 'hemmingway/pages')
   end
 
+  it 'routes to #preview via post' do
+    expect(post: '/hemmingway/pages/preview', page: {html: 'none'}).to route_to(action: 'preview', controller: 'hemmingway/pages')
+  end
+
+  it 'routes to #preview via put' do
+    expect(put: '/hemmingway/pages/preview', page: {html: 'none'}).to route_to(action: 'preview', controller: 'hemmingway/pages')
+  end
+
+  it 'routes to #preview via patch' do
+    expect(patch: '/hemmingway/pages/preview', page: {html: 'none'}).to route_to(action: 'preview', controller: 'hemmingway/pages')
+  end
+
   it 'routes to #edit' do
     expect(get: '/hemmingway/pages/about-us/edit').to route_to(action: 'edit', controller: 'hemmingway/pages', id: 'about-us')
   end
@@ -37,12 +49,6 @@ describe 'routes' do
 
   it 'routes to #destroy' do
     expect(delete: '/hemmingway/pages/about-us').to route_to(action: 'destroy', controller: 'hemmingway/pages', id: 'about-us')
-  end
-
-  context 'with default configuration' do
-    it 'routes to page at /pages' do
-      expect(routes.parent_page_path('about-us')).to eq('/pages/about-us')
-    end
   end
 
 end

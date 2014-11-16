@@ -1,11 +1,9 @@
 <% if @is_admin %>
   
     <%= form_for @page, url: parent_page_path(@page.to_param), html: {method: 'patch'} do |f| %>
-      <%= f.text_area :html, data: { hw_editor: 'inline' } %>
+      <%= f.text_area :html, data: { hw_editor: 'inline', hw_styles: styles_hw_pages_path(format: 'json') } %>
       <div id="hemmingway">
-        <%= f.submit 'Save', class: 'btn btn-success' %>
-        <%= link_to 'Full Editor', edit_hemmingway_page_path(@page.url), class: 'btn btn-info' %>
-        <%= link_to 'All Pages', hemmingway_pages_path, class: 'btn btn-info' %>
+        <%= render partial: 'actions' %>
       </div>
     <% end %>
   
