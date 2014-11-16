@@ -13,7 +13,7 @@ module Hemmingway
         }
       else
         {
-          "/#{Hemmingway.routes}*id" => 'hemmingway/pages#show',
+          "/#{Hemmingway.routes}/*id" => 'hemmingway/pages#show',
           as: Hemmingway.routes,
           constraint: Hemmingway::Constraint.new,
           defaults: {

@@ -27,3 +27,14 @@ RSpec::Core::RakeTask.new(:spec => 'app:db:test:prepare')
 
 
 task default: :spec
+
+task :s => [:server]
+
+task :server do |t, args|
+  APP_PATH = File.join(File.dirname(__FILE__), 'spec/dummy/config/application')
+  require_relative 'spec/dummy/config/boot'
+  require 'rails/commands'
+  require 'rails/commands/commands_tasks'
+  args.shift
+  Rails::CommandsTasks.new(args).run_command!('server')
+end

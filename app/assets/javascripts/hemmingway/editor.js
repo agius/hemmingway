@@ -5,7 +5,7 @@ $(function(){
   $.get('/hemmingway/pages/styles.json', function(styles){
 
     var base_config = $.extend(styles, {
-      allowedContent: true,
+      extraAllowedContent: 'dl;dt;dd;*(*);*[id]',
       forcePasteAsPlainText: 'true',
       format_tags: 'p;h1;h2;h3;h4;h5;h6;pre',
       toolbar: [
@@ -20,7 +20,7 @@ $(function(){
 
     $('[data-hw-editor="full"]').each(function(){
       var elem = $(this),
-          config = $.extend(base_config, { height: '45rem' });
+          config = $.extend(base_config, { height: '25rem' });
       elem.ckeditor(config);
     });
 

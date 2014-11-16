@@ -65,6 +65,10 @@
   <div class="row actions">
     <div class="col-md-12">
       <button type="submit" class="btn btn-success">Save</button>
+      <% unless page.new_record? %>
+        <%= link_to 'Show', hw_page_path(page), class: 'btn btn-info' %>
+      <% end %>
+      <%= link_to 'All Pages', hemmingway_pages_path, class: 'btn btn-info' %>
     </div>
   </div>
 <% end %>

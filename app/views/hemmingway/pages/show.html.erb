@@ -4,6 +4,8 @@
       <%= f.text_area :html, data: { hw_editor: 'inline' } %>
       <div id="hemmingway">
         <%= f.submit 'Save', class: 'btn btn-success' %>
+        <%= link_to 'Full Editor', edit_hemmingway_page_path(@page.url), class: 'btn btn-info' %>
+        <%= link_to 'All Pages', hemmingway_pages_path, class: 'btn btn-info' %>
       </div>
     <% end %>
   

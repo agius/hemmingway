@@ -32,7 +32,7 @@ module Hemmingway
       self.layout = 'hemmingway/application'
       self.home_page = nil
       self.admin_check = Proc.new { true }
-      self.routes = :page
+      self.routes = :pages
       self.cache = false
       self.template = nil
       self.styles = {

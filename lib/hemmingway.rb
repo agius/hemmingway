@@ -1,6 +1,7 @@
 require 'jquery-rails'
 require 'ckeditor_rails'
 require 'picnic-rails'
+require 'sass-rails'
 
 require 'hemmingway/configuration'
 require 'hemmingway/constraint'
